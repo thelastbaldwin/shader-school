@@ -6,7 +6,8 @@ attribute vec2 position;
 
 void main() {
 
-  //TODO: rotate position by theta radians about the origin
+  //from http://en.wikipedia.org/wiki/Rotation_matrix
+  mat2 rot = mat2(cos(theta), -sin(theta), sin(theta), cos(theta));
 
-  gl_Position = vec4(position, 0, 1.0);
+  gl_Position = vec4(position * rot, 0, 1.0);
 }
