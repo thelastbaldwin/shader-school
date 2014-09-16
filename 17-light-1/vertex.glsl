@@ -5,5 +5,5 @@ uniform mat4 model, view, projection;
 uniform vec3 ambient;
 
 void main() {
-  gl_Position = position;
+  gl_Position = projection * view * model * position;
 }
