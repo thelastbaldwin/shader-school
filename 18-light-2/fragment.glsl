@@ -25,12 +25,12 @@ vec3 reflectedLight(
   vec3 diffuse
 ) {
   float brightness = dot(normal, lightDirection);
+  // equivalent
   // float brightness = lambertWeight(normal, lightDirection);
   return ambient + diffuse * max(brightness, 0.0);
 }
 
 void main() {
-    vec3 reflectedL = reflectedLight(vNormal, lightDirection, ambient, diffuse);
+    vec3 reflectedL = reflectedLight(normalize(vNormal), normalize(lightDirection), ambient, diffuse);
     gl_FragColor = vec4(reflectedL, 1.0);
-  // gl_FragColor = vec4(ambient, 1.0);
 }
