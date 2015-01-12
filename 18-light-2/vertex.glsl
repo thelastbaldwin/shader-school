@@ -10,7 +10,6 @@ varying vec3 vNormal;
 void main() {
   gl_Position = projection * view * model * position;
 
-  // why is this necessary?
   vec4 worldNormal = normal * inverseModel;
   vNormal = worldNormal.xyz;
 }

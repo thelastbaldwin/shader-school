@@ -10,27 +10,7 @@ float lambertWeight(vec3 n, vec3 d) {
   return max(dot(n, d), 0.0);
 }
 
-float parallelDistance(
-  vec3 surfacePoint,
-  vec3 surfaceNormal,
-  vec3 p
-) {
-  return dot(p - surfacePoint, surfaceNormal);
-}
-
-vec3 reflectedLight(
-  vec3 normal,
-  vec3 lightDirection,
-  vec3 ambient,
-  vec3 diffuse
-) {
-  float brightness = dot(normal, lightDirection);
-  // equivalent
-  // float brightness = lambertWeight(normal, lightDirection);
-  return ambient + diffuse * max(brightness, 0.0);
-}
 
 void main() {
-    vec3 reflectedL = reflectedLight(normalize(vNormal), normalize(lightDirection), ambient, diffuse);
-    gl_FragColor = vec4(reflectedL, 1.0);
+    gl_FragColor = vec4(ambient + lambertWeight(normalize(vNormal), normalize(lightDirection)) * diffuse, 1.0);
 }
