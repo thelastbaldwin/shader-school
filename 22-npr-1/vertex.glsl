@@ -6,6 +6,11 @@ uniform mat4 inverseModel, inverseView, inverseProjection;
 uniform vec3 diffuse, lightDirection;
 uniform float numBands;
 
+varying vec3 vNormal;
+
 void main() {
-  gl_Position = vec4(0,0,0,1);
+  gl_Position = projection * view * model * position;
+
+  vec4 worldNormal = normal * inverseModel;
+  vNormal = worldNormal.xyz;
 }
